@@ -1,0 +1,13 @@
+{
+  "type": "ad_astra:space_station_recipe",
+  "dimension": "adxero:ganymade_orbit",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "minecraft:iron_ingot"
+      }
+    }
+  ],
+  "structure": "ad_astra:space_station"
+}

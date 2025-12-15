@@ -1,0 +1,10 @@
+{
+  "dimension": "adxero:test",
+  "gravity": 20,
+  "orbit": "adxero:test_orbit",
+  "solar_system": "ad_astra:solar_system",
+  "oxygen": false,
+  "solar_power": 0,
+  "temperature": 10000,
+  "tier": 4
+}

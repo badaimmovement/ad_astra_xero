@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+MixinConfigs: adxero-common.mixins.json,adxero.mixins.json
+

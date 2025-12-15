@@ -1,0 +1,10 @@
+{
+  "dimension": "adxero:io",
+  "gravity": 1.79,
+  "orbit": "adxero:io_orbit",
+  "oxygen": false,
+  "solar_power": 1,
+  "solar_system": "ad_astra:solar_system",
+  "temperature": -140,
+  "tier": 4
+}

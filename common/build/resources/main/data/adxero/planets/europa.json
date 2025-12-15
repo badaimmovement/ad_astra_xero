@@ -1,0 +1,10 @@
+{
+  "dimension": "adxero:europa",
+  "gravity": 1.31,
+  "orbit": "adxero:europa_orbit",
+  "oxygen": false,
+  "solar_power": 1,
+  "solar_system": "ad_astra:solar_system",
+  "temperature": -160,
+  "tier": 4
+}

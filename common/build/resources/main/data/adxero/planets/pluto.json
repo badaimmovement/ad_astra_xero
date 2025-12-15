@@ -1,0 +1,10 @@
+{
+  "dimension": "adxero:pluto",
+  "gravity": 0.62,
+  "orbit": "adxero:pluto_orbit",
+  "oxygen": false,
+  "solar_power": 0,
+  "solar_system": "ad_astra:solar_system",
+  "temperature": -230,
+  "tier": 4
+}

@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.nekomu.adxero.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "adxero.refmap.json",
+  "client": [
+    "PlanetsScreenMixin"
+  ],
+  "mixins": [
+    "ServerboundLandPacketMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

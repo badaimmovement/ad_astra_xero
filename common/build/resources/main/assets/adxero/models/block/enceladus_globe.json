@@ -1,0 +1,7 @@
+{
+  "parent": "adxero:block/globe",
+  "textures": {
+    "0": "adxero:block/globe/enceladus_globe",
+    "particle": "adxero:block/globe/enceladus_globe"
+  }
+}

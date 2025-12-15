@@ -1,0 +1,7 @@
+{
+  "parent": "adxero:block/globe",
+  "textures": {
+    "0": "adxero:block/globe/uranus_globe",
+    "particle": "adxero:block/globe/uranus_globe"
+  }
+}
