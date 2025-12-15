@@ -1,0 +1,12 @@
+{
+  "type": "adxero:jupiter_type",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [
+      ],
+      "biome": "minecraft:plains",
+      "structures": {}
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "dimension": "adxero:titan",
+  "gravity": 1.35,
+  "orbit": "adxero:titan_orbit",
+  "oxygen": false,
+  "solar_power": 0,
+  "solar_system": "ad_astra:solar_system",
+  "temperature": -179,
+  "tier": 4
+}

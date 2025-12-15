@@ -1,0 +1,6 @@
+{
+  "parent": "adxero:block/globe_cube",
+  "textures": {
+    "0": "adxero:block/globe/callisto_globe"
+  }
+}

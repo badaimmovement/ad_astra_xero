@@ -1,0 +1,12 @@
+{
+  "type": "adxero:saturn_type",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [
+      ],
+      "biome": "minecraft:plains",
+      "structures": {}
+    }
+  }
+}

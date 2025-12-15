@@ -1,0 +1,121 @@
+package com.nekomu.adxero.mixin;
+
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import com.mojang.math.Axis;
+import com.nekomu.adxero.NonLandablePlanets;
+import com.nekomu.adxero.client.util.DimensionRenderingUtils;
+import earth.terrarium.adastra.api.client.events.AdAstraClientEvents;
+import earth.terrarium.adastra.api.planets.Planet;
+import earth.terrarium.adastra.client.screens.PlanetsScreen;
+import earth.terrarium.adastra.common.constants.PlanetConstants;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
+import net.minecraft.Util;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(value = PlanetsScreen.class, remap = false)
+
+public abstract class PlanetsScreenMixin {
+
+    @Shadow
+    @Nullable
+    private Planet selectedPlanet;
+
+    @Shadow
+    protected abstract void addSpaceStationButtons(ResourceKey<Level> dimension);
+
+    @Inject(method = "createSelectedPlanetButtons", at = @At("HEAD"), cancellable = true)
+    private void hideButtonsForNonLandable(CallbackInfo ci) {
+        if (selectedPlanet != null && NonLandablePlanets.isNonLandable(selectedPlanet.dimension())) {
+            addSpaceStationButtons(selectedPlanet.orbitIfPresent());
+            ci.cancel();
+        }
+    }
+
+    static {
+        AdAstraClientEvents.RenderSolarSystemEvent.register((graphics, solarSystem, width, height) -> {
+            if (PlanetConstants.SOLAR_SYSTEM.equals(solarSystem)) {
+                Tesselator tessellator = Tesselator.getInstance();
+                BufferBuilder bufferBuilder = tessellator.getBuilder();
+                RenderSystem.setShader(GameRenderer::getPositionColorShader);
+                bufferBuilder.begin(VertexFormat.Mode.DEBUG_LINES, DefaultVertexFormat.POSITION_COLOR);
+                int color = 0xff24327b;
+                PlanetsScreen.drawCircle(bufferBuilder, (double) ((float) width / 2.0F), (double) ((float) height / 2.0F), (double) (135), 75, color);
+                PlanetsScreen.drawCircle(bufferBuilder, (double) ((float) width / 2.0F), (double) ((float) height / 2.0F), (double) (150), 75, color);
+                PlanetsScreen.drawCircle(bufferBuilder, (double) ((float) width / 2.0F), (double) ((float) height / 2.0F), (double) (180), 75, color);
+                PlanetsScreen.drawCircle(bufferBuilder, (double) ((float) width / 2.0F), (double) ((float) height / 2.0F), (double) (210), 75, color);
+                PlanetsScreen.drawCircle(bufferBuilder, (double) ((float) width / 2.0F), (double) ((float) height / 2.0F), (double) (240), 75, color);
+                PlanetsScreen.drawCircle(bufferBuilder, (double) ((float) width / 2.0F), (double) ((float) height / 2.0F), (double) (255), 75, color);
+                PlanetsScreen.drawCircle(bufferBuilder, (double) ((float) width / 2.0F), (double) ((float) height / 2.0F), (double) (270), 75, color);
+                PlanetsScreen.drawCircle(bufferBuilder, (double) ((float) width / 2.0F), (double) ((float) height / 2.0F), (double) (285), 75, color);
+                tessellator.end();
+
+                // Ceres
+                graphics.pose().pushPose();
+                graphics.pose().translate(width / 2f, height / 2f, 0);
+                graphics.pose().mulPose(Axis.ZP.rotationDegrees((Util.getMillis() / 100f) / 4 / 2));
+                graphics.pose().translate(131, 0, 0);
+                graphics.blit(DimensionRenderingUtils.CERES, 0, 0, 0, 0, 6, 6, 6, 6);
+                graphics.pose().popPose();
+
+                // Jupiter
+                graphics.pose().pushPose();
+                graphics.pose().translate(width / 2f, height / 2f, 0);
+                graphics.pose().mulPose(Axis.ZP.rotationDegrees((Util.getMillis() / 100f) / 5 / 2));
+                graphics.pose().translate(145, 0, 0);
+                graphics.blit(DimensionRenderingUtils.JUPITER, 0, 0, 0, 0, 12, 12, 12, 12);
+                graphics.pose().popPose();
+
+                // Saturn
+                graphics.pose().pushPose();
+                graphics.pose().translate(width / 2f, height / 2f, 0);
+                graphics.pose().mulPose(Axis.ZP.rotationDegrees((Util.getMillis() / 100f) / 6 / 2));
+                graphics.pose().translate(170, 0, 0);
+                graphics.blit(DimensionRenderingUtils.SATURN, 0, 0, 0, 0, (int) 22.5, (int) 22.5, (int) 22.5, (int) 22.5);
+                graphics.pose().popPose();
+
+                // Uranus
+                graphics.pose().pushPose();
+                graphics.pose().translate(width / 2f, height / 2f, 0);
+                graphics.pose().mulPose(Axis.ZP.rotationDegrees((Util.getMillis() / 100f) / 7 / 2));
+                graphics.pose().translate(202, 0, 0);
+                graphics.blit(DimensionRenderingUtils.URANUS, 0, 0, 0, 0, (int) 18.75, (int) 18.75, (int) 18.75, (int) 18.75);
+                graphics.pose().popPose();
+
+                // Neptune
+                graphics.pose().pushPose();
+                graphics.pose().translate(width / 2f, height / 2f, 0);
+                graphics.pose().mulPose(Axis.ZP.rotationDegrees((Util.getMillis() / 100f) / 8 / 2));
+                graphics.pose().translate(235, 0, 0);
+                graphics.blit(DimensionRenderingUtils.NEPTUNE, 0, 0, 0, 0, 12, 12, 12, 12);
+                graphics.pose().popPose();
+
+                // Pluto
+                graphics.pose().pushPose();
+                graphics.pose().translate(width / 2f, height / 2f, 0);
+                graphics.pose().mulPose(Axis.ZP.rotationDegrees((Util.getMillis() / 100f) / (int) 452.6 / 2));
+                graphics.pose().translate(265, 0, 0);
+                graphics.blit(DimensionRenderingUtils.PLUTO, 0, 0, 0, 0, 12, 12, 12, 12);
+                graphics.pose().popPose();
+
+                // Haumea
+                graphics.pose().pushPose();
+                graphics.pose().translate(width / 2f, height / 2f, 0);
+                graphics.pose().mulPose(Axis.ZP.rotationDegrees((Util.getMillis() / 100f) / (int) 516.475 / 2));
+                graphics.pose().translate(280, 0, 0);
+                graphics.blit(DimensionRenderingUtils.HAUMEA, 0, 0, 0, 0, 12, 12, 12, 12);
+                graphics.pose().popPose();
+            }
+        });
+    }
+}

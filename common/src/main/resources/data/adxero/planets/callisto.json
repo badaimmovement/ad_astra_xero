@@ -1,0 +1,10 @@
+{
+  "dimension": "adxero:callisto",
+  "gravity": 1.24,
+  "orbit": "adxero:callisto_orbit",
+  "oxygen": false,
+  "solar_power": 1,
+  "solar_system": "ad_astra:solar_system",
+  "temperature": -139,
+  "tier": 4
+}

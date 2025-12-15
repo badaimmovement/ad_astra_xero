@@ -1,0 +1,12 @@
+{
+  "type": "adxero:neptune_type",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [
+      ],
+      "biome": "minecraft:plains",
+      "structures": {}
+    }
+  }
+}
